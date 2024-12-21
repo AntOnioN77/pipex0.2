@@ -6,7 +6,7 @@
 /*   By: antofern <antofern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:54:20 by antofern          #+#    #+#             */
-/*   Updated: 2024/12/21 12:38:58 by antofern         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:34:37 by antofern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,13 @@ static int	find_path(char **env, char *command, char *pathname)
 		free_split(paths);
 		return (0);
 	}
-	if (paths == NULL)
-		ft_putstr_fd("pipex: No such file or directory\n", 2);
-	else
+	if (paths != NULL)
+	{
 		ft_putstr_fd(": command not found\n", 2);
-	free_split(paths);
+		free_split(paths);
+	}
+	else
+		ft_putstr_fd("pipex: No such file or directory\n", 2);
 	return (path_return);
 }
 
