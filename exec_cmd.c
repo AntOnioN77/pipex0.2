@@ -6,7 +6,7 @@
 /*   By: antofern <antofern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:54:20 by antofern          #+#    #+#             */
-/*   Updated: 2024/12/21 17:31:44 by antofern         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:55:04 by antofern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	path_selector(char *pathname, char **paths, char *command)
 	{
 		ft_strlcpy(pathname, paths[i], PATH_MAX);
 		ft_strlcat(pathname, "/", PATH_MAX);
-		ft_strlcat(pathname, command, PATH_MAX);
+		ft_strlcat(pathname, command, PATH_MAX + NAME_MAX);
 		if (access(pathname, X_OK) == 0)
 			return (0);
 	}
