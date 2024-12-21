@@ -6,7 +6,7 @@
 /*   By: antofern <antofern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:07:27 by antofern          #+#    #+#             */
-/*   Updated: 2024/12/21 15:13:04 by antofern         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:16:20 by antofern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@ int	first_child(char **argv, char **env, t_pipe pip)
 		close(pip[0]);
 		exec_cmd(2, argv, env);
 	}
-	else
-	{
-		close(pip[1]);
-		return (pid);
-	}
-	return (-1);
+	close(pip[1]);
+	return (pid);
 }
 
 int	last_child(char **argv, char **env, t_pipe pip)
@@ -60,12 +56,8 @@ int	last_child(char **argv, char **env, t_pipe pip)
 		stdout_to_outfile(argv[4]);
 		exec_cmd(3, argv, env);
 	}
-	else
-	{
-		close(pip[0]);
-		return (pid);
-	}
-	return (-1);
+	close(pip[0]);
+	return (pid);
 }
 
 int	main(int argc, char **argv, char **env)

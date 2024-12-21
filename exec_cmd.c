@@ -6,12 +6,11 @@
 /*   By: antofern <antofern@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:54:20 by antofern          #+#    #+#             */
-/*   Updated: 2024/12/21 15:34:37 by antofern         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:28:55 by antofern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <linux/limits.h>
 
 static void	free_split(char **ch_chain)
 {
@@ -56,7 +55,7 @@ static int	path_selector(char *pathname, char **paths, char *command)
 	int	i;
 
 	if (pathname == NULL || paths == NULL || command == NULL)
-		return (1);
+		return (127);
 	i = -1;
 	while (paths[++i] != NULL)
 	{
@@ -104,7 +103,7 @@ void	exec_cmd(int index_arg, char **argv, char **env)
 
 	cmdflags = ft_splitqu(argv[index_arg], ' ');
 	if (cmdflags == NULL)
-		exit (1);
+		exit (127);
 	path_return = find_path(env, cmdflags[0], pathname);
 	if (path_return != 0)
 	{
@@ -112,5 +111,5 @@ void	exec_cmd(int index_arg, char **argv, char **env)
 		exit (path_return);
 	}
 	execve(pathname, cmdflags, env);
-	exit (1);
+	exit (path_return);
 }
