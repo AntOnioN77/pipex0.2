@@ -1,5 +1,7 @@
 outfile
+infile
 output
+input
 tests
 42_pipex_tester
 pipexMedic
